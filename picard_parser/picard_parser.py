@@ -95,7 +95,7 @@ class PicardParser(object):
             freq = int(freq) if freq.isdigit() else float(freq)
             histogram[bucket] = freq
             line = self.input.readline().strip()
-        self._check_not_found(histogram, HISTOGRAM_KEYWORD)
+        #self._check_not_found(histogram, HISTOGRAM_KEYWORD)
         return histogram
 
     def __init__(self, filename = None, content = None):
