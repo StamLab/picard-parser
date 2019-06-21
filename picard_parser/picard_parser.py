@@ -15,7 +15,10 @@ so those attributes will be None, respectively. """
 # December 29 2014
 
 import re
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 from collections import OrderedDict
 
 METRICS_KEYWORD = 'METRICS CLASS'
@@ -102,7 +105,7 @@ class PicardParser(object):
         if filename:
             self.input = open(filename, 'r')
         elif content:
-            self.input = StringIO.StringIO(content)
+            self.input = StringIO(content)
         else:
             raise ValueError('PicardParser requires a filename or content')
 
