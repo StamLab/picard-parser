@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-VERSION = "0.1"
+VERSION = "0.2"
 
 DESCRIPTION = """\
 FASTQCParser is a tool for automating the processing of basic FastQC results in Python.
