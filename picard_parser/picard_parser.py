@@ -69,8 +69,8 @@ class PicardParser(object):
         """ returns an OrderedDict mapping the name of each metric to its value.
         assumes input currently at line with metric names """
 
-        metric_names = self.input.readline().split("\t")
-        metric_values = self.input.readline().split("\t")
+        metric_names = self.input.readline().strip().split("\t")
+        metric_values = self.input.readline().strip().split("\t")
         metrics = OrderedDict(zip(metric_names, metric_values))
         self._check_not_found(metrics, METRICS_KEYWORD)
         return metrics
