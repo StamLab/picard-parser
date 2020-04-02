@@ -15,7 +15,10 @@ so those attributes will be None, respectively. """
 # December 29 2014
 
 import re
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 from collections import OrderedDict
 
 METRICS_KEYWORD = 'METRICS CLASS'
@@ -66,8 +69,8 @@ class PicardParser(object):
         """ returns an OrderedDict mapping the name of each metric to its value.
         assumes input currently at line with metric names """
 
-        metric_names = self.input.readline().split("\t")
-        metric_values = self.input.readline().split("\t")
+        metric_names = self.input.readline().strip().split("\t")
+        metric_values = self.input.readline().strip().split("\t")
         metrics = OrderedDict(zip(metric_names, metric_values))
         self._check_not_found(metrics, METRICS_KEYWORD)
         return metrics
@@ -102,7 +105,7 @@ class PicardParser(object):
         if filename:
             self.input = open(filename, 'r')
         elif content:
-            self.input = StringIO.StringIO(content)
+            self.input = StringIO(content)
         else:
             raise ValueError('PicardParser requires a filename or content')
 

@@ -6,7 +6,7 @@ import unittest
 import logging
 import sys
 
-from picard_parser import PicardParser
+from picard_parser.picard_parser import PicardParser
 from collections import OrderedDict
 
 class TestBasicParsing(unittest.TestCase):
